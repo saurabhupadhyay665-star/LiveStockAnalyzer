@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Estimate livestock sale revenue, costs, profit, and break-even price.">
+  <title>Livestock Profitability Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#main" aria-label="Herd Ledger home"><span class="brand-mark" aria-hidden="true">HL</span> Herd Ledger</a>
+    <span class="local-label"><span aria-hidden="true">●</span> Your numbers stay in this browser</span>
+  </header>
+
+  <main id="main" class="layout">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">LIVESTOCK BUSINESS PLANNER</p>
+      <h1 id="page-title">Know your numbers<br><span>before you sell.</span></h1>
+      <p class="intro-copy">Estimate what your lot could earn. Add your market price and costs to see expected profit and your break-even price.</p>
+      <div class="note"><span aria-hidden="true">ⓘ</span><p>Enter a current local market quote. This calculator does not fetch live market prices.</p></div>
+      <div class="decor" aria-hidden="true"><span>♧</span><span>♧</span><span>♧</span></div>
+    </section>
+
+    <section class="calculator" aria-label="Livestock profitability calculator">
+      <form id="calculator-form">
+        <div class="form-heading">
+          <div><p class="eyebrow">LOT DETAILS</p><h2>Build your estimate</h2></div>
+          <label class="currency-field" for="currency">Currency<select id="currency" name="currency"><option>USD</option><option>INR</option><option>GBP</option><option>EUR</option><option>AUD</option><option>CAD</option><option>ZAR</option></select></label>
+        </div>
+
+        <div class="field-grid">
+          <label class="field" for="animal"><span>Livestock type</span><select id="animal" name="animal"><option>Cattle</option><option>Sheep</option><option>Goats</option><option>Pigs</option><option>Poultry</option><option>Other</option></select></label>
+          <label class="field" for="head"><span>Number of animals</span><div class="input-wrap"><input id="head" name="head" type="number" min="1" step="1" value="10" inputmode="numeric" required><span class="suffix">head</span></div></label>
+          <label class="field" for="weight"><span>Average live weight</span><div class="input-wrap"><input id="weight" name="weight" type="number" min="0" step="any" value="550" inputmode="decimal" required><span class="suffix">kg / head</span></div></label>
+          <label class="field" for="price"><span>Expected sale price</span><div class="input-wrap"><span class="prefix" id="price-symbol">$</span><input id="price" name="price" type="number" min="0" step="any" value="3.20" inputmode="decimal" required><span class="suffix">/ kg</span></div></label>
+        </div>
+
+        <div class="section-divider"><span>COSTS</span><span>Per animal unless noted</span></div>
+        <div class="field-grid costs-grid">
+          <label class="field" for="purchase"><span>Purchase / raising cost</span><div class="input-wrap"><span class="prefix currency-symbol">$</span><input id="purchase" name="purchase" type="number" min="0" step="any" value="900" inputmode="decimal" required></div></label>
+          <label class="field" for="feed"><span>Feed cost</span><div class="input-wrap"><span class="prefix currency-symbol">$</span><input id="feed" name="feed" type="number" min="0" step="any" value="180" inputmode="decimal" required></div></label>
+          <label class="field" for="health"><span>Health &amp; other / animal</span><div class="input-wrap"><span class="prefix currency-symbol">$</span><input id="health" name="health" type="number" min="0" step="any" value="45" inputmode="decimal" required></div></label>
+          <label class="field" for="lot-costs"><span>Transport &amp; lot costs</span><div class="input-wrap"><span class="prefix currency-symbol">$</span><input id="lot-costs" name="lot-costs" type="number" min="0" step="any" value="250" inputmode="decimal" required></div></label>
+        </div>
+        <button class="reset-button" id="reset" type="reset">↺ <span>Reset example values</span></button>
+      </form>
+
+      <section class="results" aria-labelledby="results-title" aria-live="polite">
+        <div class="results-top"><div><p class="eyebrow">YOUR ESTIMATE</p><h2 id="results-title">Projected outcome</h2></div><span class="result-icon" aria-hidden="true">↗</span></div>
+        <div class="profit-card" id="profit-card"><span id="profit-label">ESTIMATED PROFIT</span><strong id="profit-value">$4,765</strong><small id="profit-per-head">$477 per head</small></div>
+        <dl class="breakdown">
+          <div><dt>Total sale revenue</dt><dd id="revenue-value">$17,600</dd></div>
+          <div><dt>Total costs</dt><dd id="cost-value">$12,835</dd></div>
+          <div><dt>Profit margin</dt><dd id="margin-value">27.1%</dd></div>
+          <div class="break-even"><dt>Break-even sale price</dt><dd id="breakeven-value">$2.33 <small>/ kg</small></dd></div>
+        </dl>
+        <p class="disclaimer">Estimate only. Actual results vary with weights, deductions, fees, and market conditions. Confirm sale terms with your buyer.</p>
+      </section>
+    </section>
+    <footer>Herd Ledger <span>•</span> A simple planning tool for livestock producers</footer>
+  </main>
+</body>
+</html>
